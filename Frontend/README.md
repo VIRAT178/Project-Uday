@@ -1,12 +1,27 @@
-# React + Vite
+# Project Uday – Smart Farming Assistant
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
+Project Uday is a comprehensive web application designed to help Indian farmers with real-time crop advice, disease diagnosis, weather forecasts, and market price tracking. The platform integrates AI-powered chatbot support, voice assistance, and offline-first features, making it accessible for rural users with limited internet connectivity.
 
-Currently, two official plugins are available:
+## Features
+- **Crop Advice:** Personalized recommendations for key crops with actionable tips.
+- **Disease Analysis:** Identification and management of crop diseases and pests.
+- **Weather Forecast:** Real-time weather updates based on user location.
+- **Market Prices:** Latest commodity prices for major crops from various markets.
+- **Voice Support:** Voice-enabled assistance for easy accessibility.
+- **Chatbot:** Interactive AI chatbot for instant support.
+- **Offline Support:** App functionality available with intermittent or no internet.
+- **Multi-language:** Support for Hindi and English for wider reach.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies
+- React 18 with Vite build tool
+- Tailwind CSS for styling
+- Framer Motion for animations
+- React Icons for visuals
+- OpenWeatherMap API for weather data
+- Node.js & Express (if backend involved)
+- MongoDB (if backend involved)
+- Clerk/other auth provider for authentication (if used)
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Setup and Installation
+1. Clone the repository:
