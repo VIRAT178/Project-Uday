@@ -82,7 +82,8 @@ const Diagnostics = () => {
   const [weatherData, setWeatherData] = useState(null)
   const [error, setError] = useState(null)
 
-  const apiKey = "003de6422a0e75b635949c88e2002e09"
+const apiKey = import.meta.env.API_KEY;
+
 
   const toggleSelect = (index) => {
     setSelected((prev) => (prev === index ? null : index))
