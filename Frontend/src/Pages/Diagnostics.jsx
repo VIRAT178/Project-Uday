@@ -92,16 +92,14 @@ const Diagnostics = () => {
       setCity("");
     }
   };
-
   const fetchWeather = async (e) => {
     e.preventDefault();
     if (!city) return;
 
     try {
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${cityValue}&appid=${apiKey}&units=metric&lang=hi`
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=hi`
       );
-
       if (!response.ok) throw new Error("शहर नहीं मिला");
       const data = await response.json();
       setWeatherData({
