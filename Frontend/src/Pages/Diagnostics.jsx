@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState } from "react";
 import {
   FaStethoscope,
   FaHeartbeat,
@@ -9,9 +9,9 @@ import {
   FaTemperatureHigh,
   FaTint,
   FaWind,
-} from "react-icons/fa"
-import { GiChemicalDrop } from "react-icons/gi"
-import { motion, AnimatePresence } from "framer-motion"
+} from "react-icons/fa";
+import { GiChemicalDrop } from "react-icons/gi";
+import { motion, AnimatePresence } from "framer-motion";
 
 const diagnosticsItems = [
   {
@@ -74,36 +74,36 @@ const diagnosticsItems = [
     description: "मौसम की जानकारी लेकर खेती योजनाएं बनाएं।",
     details: null, // weather handled dynamically below
   },
-]
+];
 
 const Diagnostics = () => {
-  const [selected, setSelected] = useState(null)
-  const [city, setCity] = useState("")
-  const [weatherData, setWeatherData] = useState(null)
-  const [error, setError] = useState(null)
+  const [selected, setSelected] = useState(null);
+  const [city, setCity] = useState("");
+  const [weatherData, setWeatherData] = useState(null);
+  const [error, setError] = useState(null);
 
-const apiKey = import.meta.env.API_KEY;
-
+  const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
 
   const toggleSelect = (index) => {
-    setSelected((prev) => (prev === index ? null : index))
+    setSelected((prev) => (prev === index ? null : index));
     if (index !== 2) {
-      setWeatherData(null)
-      setError(null)
-      setCity("")
+      setWeatherData(null);
+      setError(null);
+      setCity("");
     }
-  }
+  };
 
   const fetchWeather = async (e) => {
-    e.preventDefault()
-    if (!city) return
+    e.preventDefault();
+    if (!city) return;
 
     try {
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=hi`
-      )
-      if (!response.ok) throw new Error("शहर नहीं मिला")
-      const data = await response.json()
+        `https://api.openweathermap.org/data/2.5/weather?q=${cityValue}&appid=${apiKey}&units=metric&lang=hi`
+      );
+
+      if (!response.ok) throw new Error("शहर नहीं मिला");
+      const data = await response.json();
       setWeatherData({
         temperature: Math.round(data.main.temp),
         description: data.weather[0].description,
@@ -111,13 +111,13 @@ const apiKey = import.meta.env.API_KEY;
         feelsLike: Math.round(data.main.feels_like),
         humidity: data.main.humidity,
         windSpeed: data.wind.speed,
-      })
-      setError(null)
+      });
+      setError(null);
     } catch (err) {
-      setError(err.message)
-      setWeatherData(null)
+      setError(err.message);
+      setWeatherData(null);
     }
-  }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br mt-20 from-green-100 via-green-200 to-teal-300 p-6">
@@ -143,7 +143,9 @@ const apiKey = import.meta.env.API_KEY;
             >
               <div className="flex flex-col items-center space-y-4">
                 <div className="text-6xl">{item.icon}</div>
-                <h3 className="text-xl font-bold text-green-800">{item.title}</h3>
+                <h3 className="text-xl font-bold text-green-800">
+                  {item.title}
+                </h3>
                 <p className="text-center text-gray-700">{item.description}</p>
               </div>
             </motion.div>
@@ -162,7 +164,10 @@ const apiKey = import.meta.env.API_KEY;
             >
               {selected !== 2 && diagnosticsItems[selected].details}
               {selected === 2 && (
-                <form onSubmit={fetchWeather} className="space-y-6 max-w-md mx-auto">
+                <form
+                  onSubmit={fetchWeather}
+                  className="space-y-6 max-w-md mx-auto"
+                >
                   <div className="flex items-center space-x-2">
                     <input
                       value={city}
@@ -179,7 +184,9 @@ const apiKey = import.meta.env.API_KEY;
                     </button>
                   </div>
                   {error && (
-                    <p className="text-center text-red-600 font-semibold mt-2">{error}</p>
+                    <p className="text-center text-red-600 font-semibold mt-2">
+                      {error}
+                    </p>
                   )}
                   {weatherData && (
                     <div className="text-center space-y-2 mt-4">
@@ -188,7 +195,9 @@ const apiKey = import.meta.env.API_KEY;
                         alt={weatherData.description}
                         className="mx-auto"
                       />
-                      <h4 className="text-3xl font-bold">{weatherData.temperature}°C</h4>
+                      <h4 className="text-3xl font-bold">
+                        {weatherData.temperature}°C
+                      </h4>
                       <p className="capitalize">{weatherData.description}</p>
                       <div className="flex justify-center space-x-6 mt-3 text-gray-800 font-semibold">
                         <div className="flex items-center space-x-1">
@@ -213,7 +222,7 @@ const apiKey = import.meta.env.API_KEY;
         </AnimatePresence>
       </motion.div>
     </div>
-  )
-}
+  );
+};
 
-export default Diagnostics
+export default Diagnostics;
